@@ -14,7 +14,8 @@
     mkdir -p $out/
     function genPackages() {
       echo "["
-      nix-env -f ${nixpkgs} -I nixpkgs=${nixpkgs} -qa --meta --json --show-trace --arg config '{ allowUnfree=true;isHydra=true;showAliases=false;}'
+      mkdir store
+      nix-env --store $(pwd)/store -f ${nixpkgs} -I nixpkgs=${nixpkgs} -qa --meta --json --show-trace --arg config '{ allowUnfree=true;isHydra=true;showAliases=false;}'
       echo "]"
     }
     genPackages > $out/packages.json
