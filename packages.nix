@@ -36,7 +36,7 @@
       FZF_NIX_TEMPLATE=''${FZF_NIX_TEMPLATE:-'.key + " (" + .value.version + ")\n" + .value.meta.homepage + "\n\n" + .value.meta.description'}
       # shellcheck disable=SC2086
       # FZF_NIX_OPTS expanded on purpose
-      fzf $FZF_NIX_OPTS --preview-window wrap --preview "head -n {1} ${packages-fzf}/packages.jsonl | tail -n 1 | jq -r '$FZF_NIX_TEMPLATE'" < ${packages-fzf}/packages.txt  |
+      fzf $FZF_NIX_OPTS "$@" --preview-window wrap --preview "head -n {1} ${packages-fzf}/packages.jsonl | tail -n 1 | jq -r '$FZF_NIX_TEMPLATE'" < ${packages-fzf}/packages.txt  |
         awk '{ print $2 }' | xargs echo -n
     '';
   };
