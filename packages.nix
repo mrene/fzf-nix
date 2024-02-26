@@ -7,6 +7,7 @@
   coreutils,
   jq,
   fzf,
+  gawk,
   writeShellApplication,
 }: rec {
   # Generate a packages.json file similar to the one provided by nixos channels.
@@ -30,7 +31,7 @@
 
   fzf-nix = writeShellApplication {
     name = "fzf-nix";
-    runtimeInputs = [fzf];
+    runtimeInputs = [fzf gawk];
     text = ''
       FZF_NIX_OPTS=''${FZF_NIX_OPTS:-"--with-nth 2 --height 50%"}
       FZF_NIX_TEMPLATE=''${FZF_NIX_TEMPLATE:-'.key + " (" + .value.version + ")\n" + .value.meta.homepage + "\n\n" + .value.meta.description'}

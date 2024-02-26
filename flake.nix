@@ -14,7 +14,7 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = builtins.attrNames inputs.nixpkgs.legacyPackages;
       perSystem = {pkgs, ...}: rec {
-        packages = pkgs.callPackage ./packages.nix {inherit nixpkgs;};
+        packages = pkgs.callPackage ./packages.nix {inherit nixpkgs;}; 
         devShells.default = pkgs.mkShell {
           packages = [packages.fzf-nix pkgs.alejandra pkgs.deadnix pkgs.statix];
         };
