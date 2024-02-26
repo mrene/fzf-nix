@@ -31,7 +31,7 @@
 
   fzf-nix = writeShellApplication {
     name = "fzf-nix";
-    runtimeInputs = [fzf gawk];
+    runtimeInputs = [fzf gawk jq];
     text = ''
       FZF_NIX_OPTS=''${FZF_NIX_OPTS:-"--with-nth 2 --height 50%"}
       FZF_NIX_TEMPLATE=''${FZF_NIX_TEMPLATE:-'.key + " (" + .value.version + ")\n" + .value.meta.homepage + "\n\n" + .value.meta.description'}
